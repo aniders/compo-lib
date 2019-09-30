@@ -1,0 +1,19 @@
+<h1>
+  DnD Shared UI components 
+</h1>
+<div style="width:25%">
+
+
+
+
+
+<div style="padding:15px">
+<dnd-select [options]="baseSelectOptions" [data]="dataList" [selectFormControl]="sharedForm.controls.select" ></dnd-select>
+</div>
+<div style="padding:15px">
+  <dnd-select [options]="singleSelectOptions" [data]="dataList" [selectFormControl]="sharedForm.controls.singleSelect" ></dnd-select>
+</div>
+<div style="padding:15px">
+  <dnd-select [options]="searchSelectOptions" [data]="dataList" [selectFormControl]="sharedForm.controls.searchSelect" ></dnd-select>
+</div>
+</div>

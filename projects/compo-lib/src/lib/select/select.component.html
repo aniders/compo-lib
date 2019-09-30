@@ -1,0 +1,33 @@
+<section class="dnd-selct">
+  <mat-form-field floatLabel="{{floatLabel}}">
+    <mat-label>{{options.label}}</mat-label>
+    <mat-select matInput (openedChange)="openedChange($event)" placeholder="{{options.placeholder}}" [formControl]="selectFormControl"
+      multiple="{{options.isMultiple}}" required="{{options.required}}">
+      <mat-select-trigger>
+        {{selectFormControl.value ? selectFormControl.value : ''}}
+      </mat-select-trigger>
+
+      <div class="select-container">
+        
+        <mat-optgroup *ngIf="options.isSearchable">
+          <mat-form-field>
+            <input #search class="search-box" autocomplete="off" placeholder="Search" aria-label="Search" matInput
+              [formControl]="searchTextboxControl">
+            <i *ngIf="search.value" (click)="clearSearch($event)" class="fa fa-times" aria-hidden="true"></i>
+          </mat-form-field>
+        </mat-optgroup>
+        <mat-optgroup *ngIf="(filteredOptions | async).length === 0 && options.isSearchable">
+          <div>No results found!</div>
+        </mat-optgroup>
+
+        <mat-option [ngClass]="(!options.isMultiple || (filteredOptions | async).length === 0) ? 'mat-opt-hide' : '' " #allSelected (click)="toggleAllSelection()" [value]="'All selected'">Select all</mat-option>
+
+        <mat-option [disabled]="allSelected.selected" (onSelectionChange)="selectionChange($event)" *ngFor="let option of filteredOptions | async"
+          [value]="option">
+          {{option}}
+        </mat-option>
+      </div>
+    </mat-select>
+  </mat-form-field>
+
+</section>
